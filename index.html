@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Latitude and Longitude</title>
+</head>
+<body>
+    <h1>Geolocation Data</h1>
+
+    <p id="latitude">Latitude: <span id="latValue">-</span></p>
+    <p id="longitude">Longitude: <span id="longValue">-</span></p>
+
+    <script>
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(displayPosition, handleError);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+
+        function displayPosition(position) {
+            const latValue = document.getElementById('latValue');
+            const longValue = document.getElementById('longValue');
+
+            latValue.textContent = position.coords.latitude;
+            longValue.textContent = position.coords.longitude;
+        }
+
+        function handleError(error) {
+            alert(`Error: ${error.message}`);
+        }
+    </script>
+</body>
+</html>
